@@ -25,15 +25,41 @@ test("title validation" , async({page})=>
     await expect(page).toHaveTitle("Google")
 })
 
-test.only("login to home page", async({page})=>
+test("login to home page", async({page})=>
 {
 
     await page.goto("https://www.facebook.com/")
     console.log(await page.title()); 
     await page.locator("#_R_64qjbjb9pb6amH1_").fill("jagadeesh")
     await page.locator("[type='password']").fill("password")
-    await page.locator("//div[@class='x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x972fbf x10w94by x1qhh985 x14e42zd x9f619 xtvsq51 xqbgfmv xbe3n85 x7a1id4 x1d9i5bo x1xila8y x1bumbmr xc8cyl1']").click();
+    //await page.locator("//div[@class='x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x972fbf x10w94by x1qhh985 x14e42zd x9f619 xtvsq51 xqbgfmv xbe3n85 x7a1id4 x1d9i5bo x1xila8y x1bumbmr xc8cyl1']").click();
+
+    //const text=await page.locator("//div[@class='x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x972fbf x10w94by x1qhh985 x14e42zd x9f619 xtvsq51 xqbgfmv xbe3n85 x7a1id4 x1d9i5bo x1xila8y x1bumbmr xc8cyl1']").textContent();
+  await expect(page.locator("//div[@class='x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x972fbf x10w94by x1qhh985 x14e42zd x9f619 xtvsq51 xqbgfmv xbe3n85 x7a1id4 x1d9i5bo x1xila8y x1bumbmr xc8cyl1']")).toContainText("Log in")
+
+    await expect(page.locator("//*[text()='Create new account 123']")).toBeVisible()
+   
+
+})
 
 
+test.only("method to validate error message", async ({page})=>
+{
+
+    const userName = page.locator("#username")
+    const pwd= page.locator("input[name='password']")
+    const terms= page.locator("#terms")
+    const signIn= page.locator("#signInBtn")
+
+   await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+    
+    await userName.fill("jagadesh017@gmail.com")
+    await pwd.fill("test@12345")
+    await terms.click()
+    await signIn.click()
+    console.log(await page.locator("div[style*='block']").textContent);
+    //compare
+
+    await expect(page.locator("div[style*='block']")).toContainText("Incorrect")
 
 })
