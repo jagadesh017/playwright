@@ -43,7 +43,7 @@ test("login to home page", async({page})=>
 })
 
 
-test.only("method to validate error message", async ({page})=>
+test("method to validate error message", async ({page})=>
 {
 
     const userName = page.locator("#username")
@@ -62,4 +62,28 @@ test.only("method to validate error message", async ({page})=>
 
     await expect(page.locator("div[style*='block']")).toContainText("Incorrect")
 
+})
+
+test.only("method to validate list of webelements", async ({page})=>
+{
+    const userName = page.locator("#username")
+    const pwd= page.locator("input[name='password']")
+    const terms= page.locator("#terms")
+    const signIn= page.locator("#signInBtn")
+    const titles=page.locator("div.card-body h4")
+
+   await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+   await userName.fill("rahulshettyacademy")
+   await pwd.fill("Learning@830$3mK2")
+   await terms.click()
+   await signIn.click()
+   console.log(await page.title())
+
+    console.log(await titles.first().textContent())
+    console.log(await titles.nth(1).textContent())
+    console.log(await titles.nth(2).textContent())
+    console.log(await titles.last().textContent())
+    console.log("the total no of product are : "+await titles.count())
+
+    console.log("all titles are :" + await titles.allTextContents())
 })
