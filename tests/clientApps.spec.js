@@ -83,7 +83,7 @@ test("window handles", async ({browser})=>
 
 })
 
-test.only("end to end flow ", async ({page})=>
+test("end to end flow ", async ({page})=>
 {
     const originalProduct = "iphone 13 pro"
     const userName = page.locator("#userEmail")
@@ -126,4 +126,28 @@ test.only("end to end flow ", async ({page})=>
 
    await cart.click()
    await page.pause()
+})
+
+test.only("crex point table", async({page})=>
+{
+    await page.goto("https://crex.com/")
+    await page.locator("div.ce-data").first().click()
+    await page.locator("//a[text()=' Points Table ']").click()
+    await page.locator(".points-table-wrapper tr").first().waitFor()
+    await page.pause()
+
+   const countval= await page.locator(".points-table-wrapper tr").count();
+    const valu=""
+    for(let i=1; i<=countval; i++){
+
+       const valu=await page.locator("//*[@class='points-table-wrapper']//tr[4]//td[1]").textContent()
+        console.log(valu)
+        break;
+       }
+       if(valu.trim()== "Mumbai Indians"){
+        const va=await page.locator("//*[@class='points-table-wrapper']//tr[4]").textContent()
+        console.log(va + "|")
+        
+       }
+
 })
