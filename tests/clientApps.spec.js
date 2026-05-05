@@ -13,13 +13,11 @@ test("method to validate list of webelements", async ({page})=>
    await signIn.click()
    console.log(await page.title())
    await titles.first().waitFor()
-    console.log("the total no of product are : "+await titles.count())
-    await page.waitForLoadState("networkidle")
+   console.log("the total no of product are : "+await titles.count())
+   await page.waitForLoadState("networkidle")
 
  console.log("all titles are :" + await titles.allTextContents())
 })
-
-
 
 test("dropdowns and radio buttons", async({page})=>
 {
@@ -28,7 +26,7 @@ test("dropdowns and radio buttons", async({page})=>
     const terms= page.locator("#terms")
     const signIn= page.locator("#signInBtn")
     const titles=page.locator("div.card-body h4")
-    const blinklink = page.locator("a[href*='https://rahulshetty']")
+    const blinkLink = page.locator("a[href*='https://rahulshetty']")
 
    await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
    await userName.fill("rahulshettyacademy")
