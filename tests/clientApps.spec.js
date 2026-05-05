@@ -16,7 +16,7 @@ test("method to validate list of webelements", async ({page})=>
     console.log("the total no of product are : "+await titles.count())
     await page.waitForLoadState("networkidle")
 
-    console.log("all titles are :" + await titles.allTextContents())
+ console.log("all titles are :" + await titles.allTextContents())
 })
 
 

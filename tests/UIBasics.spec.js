@@ -10,7 +10,7 @@
    })
 // we can minimize above code by passing page parameter
 
-test("fist scipt", async({page})=>
+test("fist script", async({page})=>
 {
    await page.goto("https://crex.com")
 })
