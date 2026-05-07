@@ -1,6 +1,7 @@
+const { expect } = require('@playwright/test');
 const BasePage = require('../tests/BasePage.js');
 
-        class FacebookLoginPage extends BasePage {
+class FacebookLoginPage extends BasePage {
             constructor(page) {
                 super(page);
 
